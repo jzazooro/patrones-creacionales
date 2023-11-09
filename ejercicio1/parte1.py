@@ -1,14 +1,10 @@
 import pandas as pd
 
-URL = "https://datos.madrid.es/egob/catalogo/212504-0-emergencias-activaciones.csv"
-
-datos = pd.read_csv(URL, sep=';', encoding='ISO-8859-1')
-
-print(datos.head())  
-
 from abc import ABC, abstractmethod
 import statistics
 
+
+#3.1
 # Interfaz Abstracta para la fábrica de análisis
 class AnalisisFactory(ABC):
     @abstractmethod
@@ -42,7 +38,7 @@ class AnalisisEstadistico(Analisis):
         }
 
 # Cliente que utiliza la fábrica y los análisis
-class Cliente:
+class Clientela:
     def __init__(self, fabrica):
         self.fabrica = fabrica
 
@@ -50,23 +46,4 @@ class Cliente:
         analisis = self.fabrica.crear_analisis()
         resultados = analisis.realizar_analisis(datos)
         return resultados
-
-# Uso del patrón Abstract Factory
-if __name__ == "__main__":
-    # Crear una fábrica de análisis estadísticos
-    fabrica_estadistica = AnalisisEstadisticoFactory()
-
-    # Crear un cliente que utiliza la fábrica de análisis estadísticos
-    cliente = Cliente(fabrica_estadistica)
-
-    # Datos de ejemplo para el análisis
-    datos_ejemplo = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9]
-
-    # Realizar el análisis estadístico
-    resultados_estadisticos = cliente.realizar_analisis(datos_ejemplo)
-
-    # Imprimir los resultados
-    print("Resultados del análisis estadístico:")
-    for clave, valor in resultados_estadisticos.items():
-        print(f"{clave}: {valor}")
 
