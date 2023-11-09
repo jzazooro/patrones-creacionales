@@ -106,7 +106,7 @@ class CSV_Builder():
             writer.writerow([pizza[0], pizza[1], pizza[2], pizza[3], pizza[4], pizza[5], pizza[6]])
         file.close()
 
-class PizzDirector:
+class PizzaDirector:
     def __init__(self, builder):
         self._builder = builder
     
