@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import csv
 import os.path
 
-class PizzeriaBuilder(ABC):
+class PizzaBuilder(ABC):
     @property
     @abstractmethod
     def crear_pizza(self):
@@ -105,6 +105,25 @@ class CSV_Builder():
             writer = csv.writer(file)
             writer.writerow([pizza[0], pizza[1], pizza[2], pizza[3], pizza[4], pizza[5], pizza[6]])
         file.close()
+
 class PizzDirector:
+    def __init__(self, builder):
+        self._builder = builder
     
+    def crear_pizza(self):
+        self._builder.crear_masa()
+        self._builder.crear_salsa()
+        self._builder.crear_ingrediente()
+        self._builder.crear_tecnica()
+        self._builder.crear_presentacion()
+        self._builder.crear_extras()
+        self._builder.crear_bebidas()
+
+    @property
+    def builder(self):
+        return self._builder
+    
+    @builder.setter
+    def builder(self, builder):
+        self._builder = builder
         
