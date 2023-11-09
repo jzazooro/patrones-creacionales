@@ -43,7 +43,7 @@ class Pizza:
     def reset(self):
         self.masa = ""
         self.salsa = ""
-        self.ingredientes = []
+        self.ingrediente = []
         self.tecnica = ""
         self.presentacion = ""
         self.extras = ""
@@ -51,7 +51,7 @@ class Pizza:
     
     @property
     def pizza(self):
-        pizza = [self.masa, self.salsa, self.ingredientes, self.tecnica, self.presentacion, self.extras, self.bebidas]
+        pizza = [self.masa, self.salsa, self.ingrediente, self.tecnica, self.presentacion, self.extras, self.bebidas]
         self.reset()
         return pizza
     def crear_masa(self):
@@ -62,11 +62,11 @@ class Pizza:
         salsa = input("Ingrese el tipo de salsa: ")
         self.salsa = salsa
 
-    def crear_ingredientes(self):
+    def crear_ingrediente(self):
         respuesta = "si"
         while respuesta == "si":
             ingrediente = input("Ingrese un ingrediente: ")
-            self.ingredientes.append(ingrediente)
+            self.ingrediente.append(ingrediente)
             respuesta = input("Desea agregar otro ingrediente? si/no: ")
 
     def crear_tecnica(self):
@@ -84,3 +84,27 @@ class Pizza:
     def crear_bebidas(self):
         bebidas = input("Ingrese las bebidas: ")
         self.bebidas = bebidas
+class Producto():
+    def __init__(self):
+        self.pizza = []
+
+    def add(self, parte):
+        self.pizza.append(parte)
+    
+    def __str__(self):
+        return f"Partes de la pizza: {','.join(self.pizza)}"
+    
+class CSV_Builder():
+    def crear_csv(self):
+        with open('pizza.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["masa", "salsa", "ingrediente", "tecnica", "presentacion", "extras", "bebidas"])
+        file.close()
+    def añadir_pizza(self, pizza):
+        with open('pizza.csv', 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([pizza[0], pizza[1], pizza[2], pizza[3], pizza[4], pizza[5], pizza[6]])
+        file.close()
+class PizzDirector:
+    
+        
