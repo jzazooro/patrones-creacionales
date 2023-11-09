@@ -52,15 +52,15 @@ class grafica_de_histograma(Grafica):
 class analisis_de_media(Analisis):
     def mostrar(self, data):
         data['FECHA']=to_datetime(data['FECHA'])
-        data['DÍA']=data['FECHA'].dt.day
-        activacion_por_dia=data['DÍA'].value_counts().sort_index()
+        data['DIA']=data['FECHA'].dt.day
+        activacion_por_dia=data['DIA'].value_counts().sort_index()
         print("La media de activaciones por día es: "+ str(activacion_por_dia.mean()))
         return activacion_por_dia.mean()
     
 class analisis_de_mediana(Analisis):
     def mostrar(self, data):
         data['FECHA']=to_datetime(data['FECHA'])
-        data['DÍA']=data['FECHA'].dt.day
-        activacion_por_dia=data['DÍA'].value_counts().sort_index()
+        data['DIA']=data['FECHA'].dt.day
+        activacion_por_dia=data['DIA'].value_counts().sort_index()
         print("La mediana de activaciones por día es: "+ str(activacion_por_dia.median()))
         return activacion_por_dia.median()
